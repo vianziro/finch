@@ -1,0 +1,195 @@
+users_paw
+	id
+	paw_point
+	username
+	ukey
+	last_date
+
+
+question
+	id
+	title
+	content
+	username
+	ukey
+	ckey
+	tkey
+
+	every question, answer, and post have a timeline data
+
+		question [ follow comment share downvote ]
+			id
+			content
+			downvote_total
+			viewer_total
+			passeduser_total
+			category
+			username
+			ukey
+			ckey
+			date
+
+			files
+				id
+				identity [ question key ]
+				tkey
+				ckey
+				username
+				ukey
+				date
+
+			comment
+				id
+				qkey
+				content
+				username
+				ukey
+				ckey
+				date
+
+			share
+
+			downvote
+				id
+				qkey
+				username
+				ukey
+				ckey
+				date
+
+			pass
+				id
+				qkey
+				username
+				ukey
+				ckey
+				date
+
+			places
+				id
+				image
+				identity
+				title
+				total_visit
+
+		answer (question answer) [ Upvote Downvote Comment ]
+			id
+			content
+			upvote_total
+			downvote_total
+			username
+			ukey
+			ckey
+			date
+
+			Upvote
+				id
+				qkey
+				username
+				ukey
+				ckey
+				date
+
+			Downvote
+				id
+				qkey
+				username
+				ukey
+				ckey
+				date
+
+			Comment
+				id
+				qkey
+				content
+				username
+				ukey
+				ckey
+				date
+
+		NOTIF 	[ someone post new comment (in main question) with timeline key ] 1
+				[ someone post new answer for question with timeline key ] 2 
+				[ someone following your question with timeline key ] 3 Done
+				[ someone send a comment in your answer with question timeline key ] 4 
+				[ someone is following you with follower profile ] 5
+
+
+			follow
+				id
+				qkey
+				username
+				ukey
+				ckey
+				date
+
+delete answer 0 
+delete comment (question) 1
+delete comment (answer) 2
+
+
+	  <div class="item" style="background: url(<?php echo $sitesrc; ?>e_user.png) no-repeat;background-position: right top;background-size: 130px 80px;">
+	    <a class="ui tiny image">
+	      <img src="http://localhost/by/uploads/images/9f49a5bba26026b817ab379e532f545d.jpg">
+	    </a>
+	    <div class="content">
+	      <a class="header">Anez Scarlet</a>
+	      <div class="description">
+	        <p>Veronika Ossi is a set designer living in New York who <a>enjoys</a> kittens, music, and partying.</p>
+	      </div>
+	      <div class="extra">
+<div class="ui labeled right floated mini button" tabindex="0">
+  <div class="ui basic green tiny button" follow-id="1385974ed5904a438616ff7bdb3f7439" follow-username="anezscarlet">
+    <i class="add icon"></i> Follow
+  </div>
+  <a class="ui basic left pointing green tiny label" follow-total="anezscarlet">
+    0
+  </a>
+</div>
+<div class="ui basic tiny right floated left icon button">
+	<i class="send icon"></i>
+	Chat
+</div>
+
+	      </div>
+	    </div>
+	  </div>
+
+
+
+	  TIMELINE MUST HAVE
+	
+IS SAVED [DB SAVED TIMELINE] 0 PERTANYAAN  * FROM SAVED TIMELINE WHERE TYPE ='0'
+IS SAVED [DB SAVED TIMELINE] 1 JAWABAN  * FROM SAVED TIMELINE WHERE TYPE ='1'
+IS SAVED [DB SAVED TIMELINE] 2 BLOG POST   * FROM SAVED TIMELINE WHERE TYPE ='2'
+
+PERTANYAAN 0 WHERE TYPE='0'
+JAWABAN 1 WHERE TYPE='1'
+POST 2 WHERE TYPE='2'
+
+CHOOSED TOPIC > WHERE TOPIC ='$TOPIC'
+
+
+POST FROM 
+	FILTER CEK users_follow. 
+	IF all DELETE FILTER
+	IF FRIEND , cek users_follow WHERE followed_username ME
+	IF FRIEND, cek user_follow WHERE username = ME
+
+
+IS SAVED [DB SAVED TIMELINE] 3 BLOG POST   * FROM SAVED TIMELINE WHERE TYPE ='3'
+
+
+SO WE NEED
+
+SHOW SAVED GET FROM user_bookmark
+WHERE show all saved
+
+saring input (WDYW) MAIN CHOOSE
+
+TOPIC input topic
+
+from who , input who.
+
+general filter [from title, viewer, date]
+
+SO TIMELINE TABLE MUST HAVE A TOPIC COLUMN, DATE, VIEWER, TITLE, FROM WHO (COURSE)) AND DONE
